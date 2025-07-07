@@ -1,12 +1,10 @@
 import express, { Request, Response } from 'express';
 import { readFileSync } from 'fs';
-import { join } from 'path';
 import NodeCache from 'node-cache';
-import { Handler, RequestHandler } from 'express-serve-static-core';
-import { INTERNAL_SERVER_ERROR } from 'http-codes';
+import { Handler } from 'express-serve-static-core';
 
 /* ------------------------------------------------------------------ */
-/* cache setup                                                         */
+/* cache setup                                                        */
 /* ------------------------------------------------------------------ */
 
 const cache = new NodeCache({
@@ -17,7 +15,7 @@ const cache = new NodeCache({
 const CONFIG_TTL = 60 * 60 * 24;
 
 /* ------------------------------------------------------------------ */
-/* express app                                                         */
+/* express app                                                        */
 /* ------------------------------------------------------------------ */
 
 const app = express();
@@ -31,11 +29,11 @@ const getConfig: Handler = async (req: Request, res: Response): Promise<void> =>
     }
 
     try {
-        const rawConfig = readFileSync(join(__dirname, 'data', 'config.json'), 'utf-8');
+        const rawConfig = readFileSync('data/config.json', 'utf-8');
         const parsed = JSON.parse(rawConfig);
 
         cache.set('config', parsed, CONFIG_TTL);
-        res.json({ cached: false, data: parsed });
+        res.json(parsed);
     } catch (e) {
         console.error('[config] load failed:', e);
         res.status(500).json({ error: 'Failed to load configuration' });
