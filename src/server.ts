@@ -24,7 +24,7 @@ app.use(express.json());
 const getConfig: Handler = async (req: Request, res: Response): Promise<void> => {
     const hit = cache.get('config');
     if (hit) {
-        res.json({ cached: true, data: hit });
+        res.json(hit);
         return;
     }
 
@@ -43,7 +43,7 @@ const getConfig: Handler = async (req: Request, res: Response): Promise<void> =>
 app.get('/config', getConfig);
 
 /* ------------------------------------------------------------------ */
-/* start server                                                        */
+/* start server                                                       */
 /* ------------------------------------------------------------------ */
 
 const PORT = process.env.PORT || 3000;
