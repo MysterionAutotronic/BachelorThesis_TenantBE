@@ -40,6 +40,11 @@ const getConfig: Handler = async (req: Request, res: Response): Promise<void> =>
     }
 }
 
+const crash: Handler = async (req: Request, res: Response): Promise<void> => {
+    res.status(200);
+    process.exit(1);
+}
+
 app.get('/config', getConfig);
 
 /* ------------------------------------------------------------------ */
