@@ -5,7 +5,8 @@ ARG CONFIG_PATH=./config/config.json
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm ci --omit=dev \
+    && npm install typescript --no-save
 
 # copy source & compile TS → JS
 COPY tsconfig.json ./
