@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=build /app/package*.json ./
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
-COPY --from=build /app/config.json ./config.json
+COPY --from=build /app/data/config.json ./config.json
 
 ENV NODE_ENV=production
 EXPOSE 3000
