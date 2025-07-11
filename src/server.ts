@@ -46,6 +46,7 @@ const crash: Handler = async (req: Request, res: Response): Promise<void> => {
 }
 
 app.get('/config', getConfig);
+app.get('/crash', crash);
 
 /* ------------------------------------------------------------------ */
 /* start server                                                       */
