@@ -29,7 +29,7 @@ const getConfig: Handler = async (req: Request, res: Response): Promise<void> =>
     }
 
     try {
-        const rawConfig = readFileSync('data/config.json', 'utf-8');
+        const rawConfig = readFileSync('config.json', 'utf-8');
         const parsed = JSON.parse(rawConfig);
 
         cache.set('config', parsed, CONFIG_TTL);
