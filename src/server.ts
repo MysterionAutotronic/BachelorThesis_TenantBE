@@ -54,5 +54,6 @@ app.get('/crash', crash);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 API ready on http://0.0.0.0:${PORT}`);
+    /* eslint-disable no-console */
+    console.log(`🚀  API ready on http://0.0.0.0:${PORT}`);
 });
