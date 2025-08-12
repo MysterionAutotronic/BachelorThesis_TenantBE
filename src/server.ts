@@ -52,8 +52,9 @@ app.get('/crash', crash);
 /* start server                                                       */
 /* ------------------------------------------------------------------ */
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => {
+const PORT = Number(process.env.PORT ?? '8080');
+const HOST = process.env.HOST ?? '0.0.0.0';
+app.listen(PORT, HOST, () => {
     /* eslint-disable no-console */
-    console.log(`🚀  API ready on http://0.0.0.0:${PORT}`);
+    console.log(`🚀 API ready on http://${HOST}:${PORT}`);
 });
